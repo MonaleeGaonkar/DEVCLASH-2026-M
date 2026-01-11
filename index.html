@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth; scroll-padding-top: 80px;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevClash 2026 | Enter the Upside Down</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stranger: {
+                red: '#E71D36',
+                neon: '#ff0000',
+                blue: '#00d2ff',
+                cyan: '#00f2ff',
+                darkRed: '#8B0000',
+                dark: '#050505',
+                void: '#060a12'
+              }
+            },
+            fontFamily: {
+              stranger: ['"ITC Benguiat"', 'serif'],
+              serif: ['"ITC Benguiat"', 'serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+            },
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.cdnfonts.com/css/itc-benguiat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #050505;
+        color: #e2e2e2;
+        font-family: 'ITC Benguiat', serif;
+        overflow-x: hidden;
+      }
+
+      /* Opening Fog Animation - Updated to 2s */
+      .opening-fog {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, rgba(10, 20, 40, 0.8) 100%);
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        animation: fog-sequence 2s ease-in-out forwards;
+      }
+
+      @keyframes fog-sequence {
+        0% { opacity: 0; backdrop-filter: blur(0px); }
+        50% { opacity: 1; backdrop-filter: blur(20px); }
+        100% { opacity: 0; backdrop-filter: blur(0px); }
+      }
+
+      /* Base dark overlay for the whole site */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(0, 20, 40, 0.15) 0%, rgba(0, 0, 0, 0.9) 100%);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Filled Stranger Things Glow & Flicker */
+      .stranger-title {
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: #e71d36; /* SOLID RED FILL */
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        /* Authentic neon glow */
+        text-shadow: 
+          0 0 4px #e71d36,
+          0 0 10px #e71d36,
+          0 0 20px rgba(231, 29, 54, 0.8),
+          0 0 30px rgba(231, 29, 54, 0.6);
+      }
+
+      .stranger-title:hover {
+        text-shadow: 
+          0 0 5px #ff0000,
+          0 0 15px #ff0000,
+          0 0 35px #ff0000;
+        animation: text-flicker-intense 0.15s infinite alternate;
+      }
+
+      @keyframes text-flicker-intense {
+        0% { opacity: 0.85; transform: skewX(-0.5deg); }
+        100% { opacity: 1; transform: skewX(0.5deg); }
+      }
+
+      @keyframes authentic-flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% {
+          opacity: 1;
+        }
+        20%, 24%, 55% {
+          opacity: 0.8;
+          text-shadow: 0 0 4px #e71d36;
+        }
+      }
+
+      .animate-authentic-flicker {
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 45;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 210, 255, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+        position: fixed;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 6s linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+
+      .tv-static {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .spores {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none;
+      }
+
+      .active-spores .spores {
+        opacity: 0.2;
+        animation: spores-float 30s linear infinite;
+      }
+
+      @keyframes spores-float {
+        from { background-position: 0 0; }
+        to { background-position: 150px 300px; }
+      }
+
+      .bg-upside-down {
+        background: radial-gradient(circle at center, #06101f 0%, #050505 100%);
+        border-top: 2px solid rgba(0, 210, 255, 0.1);
+        border-bottom: 2px solid rgba(0, 210, 255, 0.1);
+        box-shadow: inset 0 0 100px rgba(0,0,0,1);
+      }
+
+      ::selection {
+        background: #e71d36;
+        color: white;
+      }
+      
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #000;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e71d36;
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+        "framer-motion": "https://esm.sh/framer-motion@^12.25.0"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div class="opening-fog"></div>
+    <div id="root"></div>
+    <div class="tv-static"></div>
+    <div class="scanline"></div>
+  </body>
+</html>
